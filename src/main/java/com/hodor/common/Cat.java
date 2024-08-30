@@ -5,7 +5,8 @@ public class Cat {
     private String name;
     private int age;
 
-    public Cat(){}
+    public Cat() {
+    }
 
     public Cat(String name, int age) {
         this.name = name;
@@ -28,7 +29,19 @@ public class Cat {
         this.age = age;
     }
 
-    private void meow() {
+    public void meow() {
         System.out.println("Meow meow !!");
+    }
+
+    private void privateMeow() {
+        System.out.println("How did you call this ? Meow private Meow !!");
+    }
+
+    public static void staticMeow() {
+        System.out.println("Meow public and static Meow !!");
+    }
+
+    private static void privateAndStaticMeow() {
+        System.out.println("Meow private and static Meow !!");
     }
 }
