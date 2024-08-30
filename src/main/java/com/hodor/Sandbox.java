@@ -1,7 +1,8 @@
 package com.hodor;
 
-public class Main {
+public class Sandbox {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        System.out.println(2+3*4);
     }
 }
