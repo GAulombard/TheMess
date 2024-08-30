@@ -16,5 +16,6 @@ public class StringImmutable {
         //proof with == that compare reference in memory
         System.out.println(name == anotherName); // should return true
         System.out.println(name == aThirdName); // should return false
+        System.out.println(name.equals(aThirdName)); // should return true
     }
 }
