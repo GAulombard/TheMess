@@ -10,6 +10,10 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    public String getHolder() {
+        return holder;
+    }
+
     public double getBalance() {
         return balance;
     }

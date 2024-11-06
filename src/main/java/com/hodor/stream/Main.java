@@ -23,5 +23,11 @@ public class Main {
                 .filter(ba -> ba.getBalance() < 0)
                 .count();
 
+        //example de mapping
+        bankAccounts.stream()
+                .filter(account -> account.getBalance() < 0)
+                .map(BankAccount::getHolder)
+                .forEach(System.out::println);
+
     }
 }
