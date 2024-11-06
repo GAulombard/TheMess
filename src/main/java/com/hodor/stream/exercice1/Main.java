@@ -19,6 +19,9 @@ public class Main {
         System.out.println("Task 1 = " + task1);
 
         // Task 2 : Trouvez tous les "Drivers" qui n'ont fait aucun "Trip"
+        // recuperer les drivers dans allTrips > set1
+        // recuperer les drivers > set2
+        // recuperer set2 qui ne sont pas dans set1
         var task2 = allTrips.stream()
                 .;
         System.out.println("Task 2 = " + task2);
