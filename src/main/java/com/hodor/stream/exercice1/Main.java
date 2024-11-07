@@ -19,23 +19,36 @@ public class Main {
         System.out.println("Task 1 = " + task1);
 
         // Task 2 : Trouvez tous les "Drivers" qui n'ont fait aucun "Trip"
-        // recuperer les drivers dans allTrips > set1
-        // recuperer les drivers > set2
-        // recuperer set2 qui ne sont pas dans set1
-        var task2 = allTrips.stream()
-                .;
+        var task2 = alldrivers.stream()
+                .filter(d -> allTrips.stream()
+                        .noneMatch(t -> t.getDriver().equals(d)))
+                .collect(Collectors.toSet());
         System.out.println("Task 2 = " + task2);
 
         // Task 3 : Affichez tous les "Drivers" avec leur distance total
-        var task3 = null;
+        var task3 = allTrips.stream()
+                .collect(Collectors.groupingBy(Trip::getDriver,
+                        Collectors.summingDouble(Trip::getDistance)));
         System.out.println("Task 3 = " + task3);
 
         // Task 4 : Trouvez tous les "Passengers" ayant au moins participé à un "Trip"
-        var task4 = null;
+        var task4 = allPassengers.stream()
+                .filter(p -> allTrips.stream().anyMatch(t -> t.getPassengers().contains(p)))
+                .collect(Collectors.toSet());
         System.out.println("Task 4 = " + task4);
 
         // Task 5 : Trouvez tous les "Passengers" qui ont participé à plus d'un "Trip" avec le meme "Driver"
-        var task5 = null;
+        var task5 = allPassengers.stream()
+                .filter(p -> allTrips.stream()
+                        .filter(t -> t.getPassengers().contains(p))
+                        .collect(Collectors.groupingBy(
+                                Trip::getDriver,
+                                Collectors.counting()
+                        ))
+                        .values()
+                        .stream()
+                        .anyMatch(v -> v > 1L))
+                .collect(Collectors.toSet());
         System.out.println("Task 5 = " + task5);
 
     }
