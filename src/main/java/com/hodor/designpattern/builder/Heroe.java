@@ -1,4 +1,4 @@
-package com.hodor.pattern.builder;
+package com.hodor.designpattern.builder;
 
 public class Heroe {
 

@@ -3,9 +3,15 @@ package com.hodor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Sandbox {
     public static void main(String[] args) {
+
+        List<List<Object>> myList = new ArrayList<>();
+
+        var test = Stream.of(1,2,3,4,5,6,7,8).reduce(Integer::sum);
+        System.out.println(test);
 
         List<String> colors1 = new ArrayList<>();
         Collections.addAll(colors1,"black","red","yellow");

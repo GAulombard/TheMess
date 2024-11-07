@@ -1,4 +1,4 @@
-package com.hodor.pattern.observer;
+package com.hodor.designpattern.observer;
 
 import java.util.Observable;
 import java.util.Observer;
