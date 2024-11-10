@@ -1,29 +1,37 @@
 package com.hodor.jdbc.firstimplementation;
 
 import com.hodor.jdbc.firstimplementation.entity.Joueur;
+import com.hodor.jdbc.firstimplementation.entity.Tournoi;
 import com.hodor.jdbc.firstimplementation.repository.JoueurRepositoryImpl;
+import com.hodor.jdbc.firstimplementation.repository.TournoiRepositoryImpl;
+import com.hodor.jdbc.firstimplementation.service.JoueurService;
 
 import java.util.List;
 
 public class Client {
     public static void main(String[] args) {
-        JoueurRepositoryImpl joueurRepository = new JoueurRepositoryImpl();
-        Joueur bartoli = joueurRepository.getById(21L);
+        JoueurService joueurService = new JoueurService();
+/*        Joueur bartoli = joueurService.getById(21L);
 
-        List<Joueur> joueurs = joueurRepository.list();
-        joueurs.forEach(System.out::println);
+        List<Joueur> joueurs = joueurService.list();
+        joueurs.forEach(System.out::println);*/
 
         Joueur noah = new Joueur();
         noah.setNom("Noah");
         noah.setPrenom("Yannik");
         noah.setSexe('H');
-        noah = joueurRepository.create(noah);
+        //noah = joueurService.createJoueur(noah);
+        joueurService.createJoueur(noah);
 
-        Joueur joueur = joueurRepository.getById(noah.getId());
+/*        Joueur joueur = joueurService.getById(noah.getId());
         joueur.setPrenom("Yannick");
-        joueurRepository.update(joueur);
+        joueurService.update(joueur);
 
-        joueurRepository.delete(noah.getId());
+        joueurService.delete(noah.getId());
+
+        TournoiRepositoryImpl tournoiRepository = new TournoiRepositoryImpl();
+        List<Tournoi> tournois = tournoiRepository.list();
+        tournois.forEach(System.out::println);*/
 
     }
 }
