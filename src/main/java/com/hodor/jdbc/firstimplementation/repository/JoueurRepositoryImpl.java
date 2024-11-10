@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JoueurRepositoryImpl {
 
-    public void create(Joueur joueur) {
+    public Joueur create(Joueur joueur) {
         Connection con = null;
         try {
             con = DataSourceProvider.getInstance().getConnection();
@@ -21,12 +21,18 @@ public class JoueurRepositoryImpl {
             PreparedStatement ps = con.prepareStatement("""
                                         INSERT INTO JOUEUR (NOM,PRENOM,SEXE)
                                         VALUES (?,?,?)
-                    """);
+                    """, PreparedStatement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, joueur.getNom());
             ps.setString(2, joueur.getPrenom());
             ps.setString(3, joueur.getSexe().toString());
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                joueur.setId(rs.getLong(1));
+            }
+
             ps.close();
 
             System.out.println("Joueur créé: " + joueur);
@@ -47,6 +53,7 @@ public class JoueurRepositoryImpl {
                 }
             }
         }
+        return joueur;
     }
 
     public void update(Joueur joueur) {

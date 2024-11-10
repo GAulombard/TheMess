@@ -13,17 +13,17 @@ public class Client {
         List<Joueur> joueurs = joueurRepository.list();
         joueurs.forEach(System.out::println);
 
-//        Joueur noah = new Joueur();
-//        noah.setNom("Noah");
-//        noah.setPrenom("Yannik");
-//        noah.setSexe('H');
-//        joueurRepository.create(noah);
-//
-//        Joueur joueur = joueurRepository.getById(47L);
-//        joueur.setPrenom("Yannick");
-//        joueurRepository.update(joueur);
-//
-//        joueurRepository.delete(47L);
+        Joueur noah = new Joueur();
+        noah.setNom("Noah");
+        noah.setPrenom("Yannik");
+        noah.setSexe('H');
+        noah = joueurRepository.create(noah);
+
+        Joueur joueur = joueurRepository.getById(noah.getId());
+        joueur.setPrenom("Yannick");
+        joueurRepository.update(joueur);
+
+        joueurRepository.delete(noah.getId());
 
     }
 }
