@@ -9,7 +9,8 @@ public class Client {
 
         JoueurController joueurController = new JoueurController();
         //joueurController.afficheDetailJoueur();
-        joueurController.creerJoueur();
+        //joueurController.creerJoueur();
+        joueurController.renommerJoueur();
 
         TournoiController tournoiController = new TournoiController();
         //tournoiController.afficheDetailTournoi();

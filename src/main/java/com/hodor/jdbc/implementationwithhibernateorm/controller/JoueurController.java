@@ -20,6 +20,16 @@ public class JoueurController {
         Joueur joueur = joueurService.getJoueur(id);
     }
 
+    public void renommerJoueur() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id du joueur: ");
+        long id = scanner.nextLong();
+        scanner.nextLine();
+        System.out.print("Nouveau nom: ");
+        String nom = scanner.nextLine();
+        joueurService.renome(id, nom);
+    }
+
     public void creerJoueur() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nom du joueur: ");

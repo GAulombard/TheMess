@@ -23,9 +23,9 @@ public class TournoiController {
     public void creerTournoi() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nom du tournoi: ");
-        String nom = scanner.next();
+        String nom = scanner.nextLine();
         System.out.print("Code du Tournoi: ");
-        String code = scanner.next();
+        String code = scanner.nextLine();
         Tournoi tournoi = new Tournoi();
         tournoi.setNom(nom);
         tournoi.setCode(code);
