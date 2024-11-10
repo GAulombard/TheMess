@@ -1,4 +1,4 @@
-package com.hodor.jdbc.entity;
+package com.hodor.jdbc.firstimplementation.entity;
 
 public class Joueur {
     private Long id;
