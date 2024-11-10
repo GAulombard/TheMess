@@ -1,7 +1,7 @@
-package com.hodor.jdbc.firstimplementation.controller;
+package com.hodor.jdbc.implementationwithhibernateorm.controller;
 
-import com.hodor.jdbc.firstimplementation.entity.Joueur;
-import com.hodor.jdbc.firstimplementation.service.JoueurService;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
+import com.hodor.jdbc.implementationwithhibernateorm.service.JoueurService;
 
 import java.util.Scanner;
 

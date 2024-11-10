@@ -1,6 +1,7 @@
 package com.hodor.jdbc.firstimplementation;
 
 import com.hodor.jdbc.firstimplementation.controller.JoueurController;
+import com.hodor.jdbc.firstimplementation.controller.TournoiController;
 import com.hodor.jdbc.firstimplementation.entity.*;
 import com.hodor.jdbc.firstimplementation.repository.JoueurRepositoryImpl;
 import com.hodor.jdbc.firstimplementation.repository.TournoiRepositoryImpl;
@@ -65,7 +66,12 @@ public class Client {
         matchService.enregistrerNouveauMatch(match);*/
 
         JoueurController joueurController = new JoueurController();
-        joueurController.afficheDetailJoueur();
+        //joueurController.afficheDetailJoueur();
+        //joueurController.creerJoueur();
+
+        TournoiController tournoiController = new TournoiController();
+        tournoiController.afficheDetailTournoi();
+        tournoiController.creerTournoi();
 
     }
 }
