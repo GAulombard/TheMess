@@ -1,19 +1,12 @@
-package com.hodor.jdbc.implementationwithhibernateorm.entity;
+package com.hodor.jdbc.implementationwithhibernateorm.dto;
 
-import jakarta.persistence.*;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 
-@Entity
-@Table(name = "EPREUVE")
-public class Epreuve {
+public class EpreuveEagerDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Short annee;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_TOURNOI")
     private Tournoi tournoi;
-    @Column(name = "TYPE_EPREUVE")
     private Character typeEpreuve;
 
     public Character getTypeEpreuve() {
@@ -50,7 +43,7 @@ public class Epreuve {
 
     @Override
     public String toString() {
-        return "Epreuve{" +
+        return "EpreuveEagerDTO{" +
                "id=" + id +
                ", annee=" + annee +
                ", tournoi=" + tournoi +

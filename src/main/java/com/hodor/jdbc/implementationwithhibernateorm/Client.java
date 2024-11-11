@@ -1,5 +1,6 @@
 package com.hodor.jdbc.implementationwithhibernateorm;
 
+import com.hodor.jdbc.implementationwithhibernateorm.controller.EpreuveController;
 import com.hodor.jdbc.implementationwithhibernateorm.controller.JoueurController;
 import com.hodor.jdbc.implementationwithhibernateorm.controller.ScoreController;
 import com.hodor.jdbc.implementationwithhibernateorm.controller.TournoiController;
@@ -21,7 +22,9 @@ public class Client {
         //tournoiController.supprimerTournoi();
 
         ScoreController scoreController = new ScoreController();
-        scoreController.afficheDetailScore();
+        //scoreController.afficheDetailScore();
 
+        EpreuveController epreuveController = new EpreuveController();
+        epreuveController.afficheDetailEpreuve();
     }
 }

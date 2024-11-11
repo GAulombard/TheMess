@@ -1,19 +1,9 @@
-package com.hodor.jdbc.implementationwithhibernateorm.entity;
+package com.hodor.jdbc.implementationwithhibernateorm.dto;
 
-import jakarta.persistence.*;
+public class EpreuveLazyDTO {
 
-@Entity
-@Table(name = "EPREUVE")
-public class Epreuve {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Short annee;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_TOURNOI")
-    private Tournoi tournoi;
-    @Column(name = "TYPE_EPREUVE")
     private Character typeEpreuve;
 
     public Character getTypeEpreuve() {
@@ -40,20 +30,11 @@ public class Epreuve {
         this.annee = annee;
     }
 
-    public Tournoi getTournoi() {
-        return tournoi;
-    }
-
-    public void setTournoi(Tournoi tournoi) {
-        this.tournoi = tournoi;
-    }
-
     @Override
     public String toString() {
-        return "Epreuve{" +
+        return "EpreuveLazyDTO{" +
                "id=" + id +
                ", annee=" + annee +
-               ", tournoi=" + tournoi +
                ", typeEpreuve=" + typeEpreuve +
                '}';
     }
