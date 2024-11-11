@@ -37,7 +37,8 @@
         <!-- Enities to map -->
         <mapping class="com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur" />
         <mapping class="com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi" />
-        <!-- mapping class="com.mycompany.tennis.core.entity.Tournoi" /-->
+        <mapping class="com.hodor.jdbc.implementationwithhibernateorm.entity.Epreuve" />
+        <mapping class="com.hodor.jdbc.implementationwithhibernateorm.entity.Score" />
 
     </session-factory>
 

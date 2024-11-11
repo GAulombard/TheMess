@@ -2,6 +2,7 @@ package com.hodor.jdbc.implementationwithhibernateorm.repository;
 
 import com.hodor.jdbc.implementationwithhibernateorm.DataSourceProvider;
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -75,38 +76,11 @@ public class TournoiRepositoryImpl {
     }
 
     public void delete(Long id) {
-        Connection con = null;
-        try {
-            con = DataSourceProvider.getInstance().getConnection();
+        Tournoi tournoi = getById(id);
 
-            PreparedStatement ps = con.prepareStatement("""
-                                        DELETE FROM TOURNOI         
-                                        WHERE ID=?
-                    """);
-
-
-            ps.setLong(1, id);
-            ps.executeUpdate();
-            ps.close();
-
-            System.out.println("Tournoi supprimé id: " + id);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        } finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.delete(tournoi);
+        System.out.println("Tournoi supprimé id: " + id);
     }
 
     public Tournoi getById(Long id) {

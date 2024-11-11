@@ -1,7 +1,10 @@
 package com.hodor.jdbc.implementationwithhibernateorm.repository;
 
 import com.hodor.jdbc.implementationwithhibernateorm.DataSourceProvider;
+import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Score;
+import org.hibernate.Session;
 
 import java.sql.*;
 
@@ -60,6 +63,18 @@ public class ScoreRepositoryImpl {
                 }
             }
         }
+        return score;
+    }
+
+    public Score getById(Long id) {
+
+        Score score = null;
+        Session session = null;
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        score = session.get(Score.class, id);
+        System.out.println("Score récupéré: " + score);
+
         return score;
     }
 

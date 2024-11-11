@@ -1,34 +1,28 @@
 package com.hodor.jdbc.implementationwithhibernateorm.service;
 
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
-import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
-import com.hodor.jdbc.implementationwithhibernateorm.repository.TournoiRepositoryImpl;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Score;
+import com.hodor.jdbc.implementationwithhibernateorm.repository.ScoreRepositoryImpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class TournoiService {
+public class ScoreService {
 
-    private TournoiRepositoryImpl tournoiRepository;
+    private ScoreRepositoryImpl scoreRepository;
 
-    public TournoiService() {
-        this.tournoiRepository = new TournoiRepositoryImpl();
+    public ScoreService() {
+        this.scoreRepository = new ScoreRepositoryImpl();
     }
 
-    public Tournoi createTournoi(Tournoi tournoi) {
-        return tournoiRepository.create(tournoi);
-    }
-
-    public Tournoi getTournoi(Long id) {
-        return tournoiRepository.getById(id);
-    }
-
-    public void deleteTournoi(long id) {
+    public Score getScore(Long id) {
         Session session = null;
         Transaction tx = null;
+        Score score = null;
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
-            tournoiRepository.delete(id);
+            score = scoreRepository.getById(id);
             tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
@@ -38,5 +32,7 @@ public class TournoiService {
                 session.close();
             }
         }
+
+        return score;
     }
 }

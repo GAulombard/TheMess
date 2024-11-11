@@ -32,4 +32,11 @@ public class TournoiController {
 
         tournoiService.createTournoi(tournoi);
     }
+
+    public void supprimerTournoi() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id du tournoi: ");
+        long id = scanner.nextLong();
+        tournoiService.deleteTournoi(id);
+    }
 }
