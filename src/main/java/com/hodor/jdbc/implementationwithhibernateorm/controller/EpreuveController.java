@@ -15,13 +15,6 @@ public class EpreuveController {
         this.epreuveService = new EpreuveService();
     }
 
-    public void afficheDetailEpreuve() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Id de l'epreuve: ");
-        long id = scanner.nextLong();
-        Epreuve epreuve = epreuveService.getEpreuve(id);
-    }
-
     public void afficheDetailEpreuveAvecTournoi() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Id de l'epreuve: ");

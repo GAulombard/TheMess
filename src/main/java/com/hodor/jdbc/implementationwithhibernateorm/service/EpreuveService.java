@@ -18,27 +18,6 @@ public class EpreuveService {
         this.epreuveRepository = new EpreuveRepositoryImpl();
     }
 
-    public Epreuve getEpreuve(Long id) {
-        Session session = null;
-        Transaction tx = null;
-        Epreuve epreuve = null;
-        try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            tx = session.beginTransaction();
-            epreuve = epreuveRepository.getById(id);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        System.out.println("Epreuve récupéré: " + epreuve);
-        return epreuve;
-    }
-
     public EpreuveEagerDTO getEpreuveAvecTournoi(Long id) {
         Session session = null;
         Transaction tx = null;
@@ -48,8 +27,7 @@ public class EpreuveService {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
             epreuve = epreuveRepository.getById(id);
-            Hibernate.initialize(epreuve.getTournoi());
-            tx.commit();
+            //Hibernate.initialize(epreuve.getTournoi());
 
             TournoiDTO tournoiDTO = new TournoiDTO();
             tournoiDTO.setId(epreuve.getTournoi().getId());
@@ -61,6 +39,7 @@ public class EpreuveService {
             dto.setTypeEpreuve(epreuve.getTypeEpreuve());
             dto.setId(epreuve.getId());
 
+            tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
@@ -82,12 +61,12 @@ public class EpreuveService {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
             epreuve = epreuveRepository.getById(id);
-            tx.commit();
 
             dto.setAnnee(epreuve.getAnnee());
             dto.setTypeEpreuve(epreuve.getTypeEpreuve());
             dto.setId(epreuve.getId());
 
+            tx.commit();
         } catch (Exception e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
