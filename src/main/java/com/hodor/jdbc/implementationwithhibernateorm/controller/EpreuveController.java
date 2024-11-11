@@ -21,4 +21,18 @@ public class EpreuveController {
         long id = scanner.nextLong();
         Epreuve epreuve = epreuveService.getEpreuve(id);
     }
+
+    public void afficheDetailEpreuveAvecTournoi() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id de l'epreuve: ");
+        long id = scanner.nextLong();
+        epreuveService.getEpreuveAvecTournoi(id);
+    }
+
+    public void afficheDetailEpreuveSansTournoi() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id de l'epreuve: ");
+        long id = scanner.nextLong();
+        epreuveService.getEpreuveSansTournoi(id);
+    }
 }

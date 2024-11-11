@@ -14,7 +14,6 @@ public class EpreuveRepositoryImpl {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         epreuve = session.get(Epreuve.class, id);
-        System.out.println("Epreuve récupéré: " + epreuve);
 
         return epreuve;
     }

@@ -6,7 +6,7 @@ public class EpreuveEagerDTO {
 
     private Long id;
     private Short annee;
-    private Tournoi tournoi;
+    private TournoiDTO tournoi;
     private Character typeEpreuve;
 
     public Character getTypeEpreuve() {
@@ -33,11 +33,11 @@ public class EpreuveEagerDTO {
         this.annee = annee;
     }
 
-    public Tournoi getTournoi() {
+    public TournoiDTO getTournoi() {
         return tournoi;
     }
 
-    public void setTournoi(Tournoi tournoi) {
+    public void setTournoi(TournoiDTO tournoi) {
         this.tournoi = tournoi;
     }
 
