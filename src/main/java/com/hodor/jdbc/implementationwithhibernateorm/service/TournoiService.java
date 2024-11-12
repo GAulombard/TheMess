@@ -1,6 +1,7 @@
 package com.hodor.jdbc.implementationwithhibernateorm.service;
 
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
+import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.TournoiRepositoryImpl;
 import org.hibernate.Session;
@@ -14,11 +15,11 @@ public class TournoiService {
         this.tournoiRepository = new TournoiRepositoryImpl();
     }
 
-    public Tournoi createTournoi(Tournoi tournoi) {
-        return tournoiRepository.create(tournoi);
+    public TournoiDTO createTournoi(TournoiDTO dto) {
+        return tournoiRepository.create(dto);
     }
 
-    public Tournoi getTournoi(Long id) {
+    public TournoiDTO getTournoi(Long id) {
         return tournoiRepository.getById(id);
     }
 

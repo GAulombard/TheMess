@@ -1,5 +1,6 @@
 package com.hodor.jdbc.implementationwithhibernateorm.controller;
 
+import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 import com.hodor.jdbc.implementationwithhibernateorm.service.TournoiService;
 
@@ -17,7 +18,7 @@ public class TournoiController {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Id du tournoi: ");
         long id = scanner.nextLong();
-        Tournoi tournoi = tournoiService.getTournoi(id);
+        tournoiService.getTournoi(id);
     }
 
     public void creerTournoi() {
@@ -26,7 +27,7 @@ public class TournoiController {
         String nom = scanner.nextLine();
         System.out.print("Code du Tournoi: ");
         String code = scanner.nextLine();
-        Tournoi tournoi = new Tournoi();
+        TournoiDTO tournoi = new TournoiDTO();
         tournoi.setNom(nom);
         tournoi.setCode(code);
 

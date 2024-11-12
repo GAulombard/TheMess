@@ -2,6 +2,7 @@ package com.hodor.jdbc.implementationwithhibernateorm.repository;
 
 import com.hodor.jdbc.implementationwithhibernateorm.DataSourceProvider;
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
+import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 import org.hibernate.Session;
@@ -16,15 +17,19 @@ import java.util.List;
 
 public class TournoiRepositoryImpl {
 
-    public Tournoi create(Tournoi tournoi) {
+    public TournoiDTO create(TournoiDTO dto) {
         Session session = null;
         Transaction tx = null;
+        Tournoi tournoi = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
+            tournoi = new Tournoi();
+            tournoi.setNom(dto.getNom());
+            tournoi.setCode(dto.getCode());
             session.persist(tournoi);
-            tx.commit();
             System.out.println("Tournoi créé: " + tournoi);
+            tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
@@ -35,7 +40,7 @@ public class TournoiRepositoryImpl {
                 session.close();
             }
         }
-        return tournoi;
+        return dto;
     }
 
     public void update(Tournoi tournoi) {
@@ -76,20 +81,27 @@ public class TournoiRepositoryImpl {
     }
 
     public void delete(Long id) {
-        Tournoi tournoi = getById(id);
+        TournoiDTO dto = getById(id);
 
+        Tournoi tournoi = new Tournoi();
+        tournoi.setId(dto.getId());
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.delete(tournoi);
         System.out.println("Tournoi supprimé id: " + id);
     }
 
-    public Tournoi getById(Long id) {
+    public TournoiDTO getById(Long id) {
         Session session = null;
         Tournoi tournoi = null;
+        TournoiDTO dto = null;
         try {
+            dto = new TournoiDTO();
             session = HibernateUtil.getSessionFactory().openSession();
             tournoi = session.get(Tournoi.class, id);
-            System.out.println("Tournoi récupéré: " + tournoi);
+            dto.setNom(tournoi.getNom());
+            dto.setId(tournoi.getId());
+            dto.setCode(tournoi.getCode());
+            System.out.println("Tournoi récupéré: " + dto);
 
         } catch (Throwable t) {
             t.printStackTrace();
@@ -98,7 +110,7 @@ public class TournoiRepositoryImpl {
                 session.close();
             }
         }
-        return tournoi;
+        return dto;
     }
 
     public List<Tournoi> list() {

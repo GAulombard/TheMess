@@ -1,10 +1,24 @@
 package com.hodor.jdbc.implementationwithhibernateorm.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "MATCH_TENNIS")
 public class Match {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_VAINQUEUR")
     private Joueur vainqueur;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_FINALISTE")
     private Joueur finaliste;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_EPREUVE")
     private Epreuve epreuve;
+    @Transient
     private Score score;
 
     public Score getScore() {
@@ -45,5 +59,14 @@ public class Match {
 
     public void setEpreuve(Epreuve epreuve) {
         this.epreuve = epreuve;
+    }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+               "id=" + id +
+               ", vainqueur=" + vainqueur +
+               ", finaliste=" + finaliste +
+               '}';
     }
 }

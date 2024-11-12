@@ -6,7 +6,6 @@ import com.hodor.jdbc.implementationwithhibernateorm.dto.EpreuveLazyDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Epreuve;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.EpreuveRepositoryImpl;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
