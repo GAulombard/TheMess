@@ -6,6 +6,7 @@ public class MatchDTO {
     private JoueurDTO vainqueur;
     private JoueurDTO finaliste;
     private EpreuveEagerDTO epreuve;
+    private ScoreEagerDTO score;
 
     public Long getId() {
         return id;
@@ -34,9 +35,11 @@ public class MatchDTO {
     @Override
     public String toString() {
         return "MatchDTO{" +
-               "vainqueur=" + vainqueur +
+               "id=" + id +
+               ", vainqueur=" + vainqueur +
                ", finaliste=" + finaliste +
                ", epreuve=" + epreuve +
+               ", score=" + score +
                '}';
     }
 
@@ -46,5 +49,13 @@ public class MatchDTO {
 
     public void setEpreuve(EpreuveEagerDTO epreuve) {
         this.epreuve = epreuve;
+    }
+
+    public ScoreEagerDTO getScore() {
+        return score;
+    }
+
+    public void setScore(ScoreEagerDTO score) {
+        this.score = score;
     }
 }

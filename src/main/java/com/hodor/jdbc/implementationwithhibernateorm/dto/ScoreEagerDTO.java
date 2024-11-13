@@ -1,34 +1,24 @@
-package com.hodor.jdbc.implementationwithhibernateorm.entity;
+package com.hodor.jdbc.implementationwithhibernateorm.dto;
 
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Match;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "SCORE_VAINQUEUR")
-public class Score {
+public class ScoreEagerDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "SET_1")
     private Byte set1;
-    @Column(name = "SET_2")
     private Byte set2;
-    @Column(name = "SET_3")
     private Byte set3;
-    @Column(name = "SET_4")
     private Byte set4;
-    @Column(name = "SET_5")
     private Byte set5;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_MATCH")
-    private Match match;
+    private MatchDTO matchDTO;
 
-    public Match getMatch() {
-        return match;
+    public MatchDTO getMatchDTO() {
+        return matchDTO;
     }
 
-    public void setMatch(Match match) {
-        this.match = match;
+    public void setMatchDTO(MatchDTO matchDTO) {
+        this.matchDTO = matchDTO;
     }
 
     public Long getId() {
@@ -81,13 +71,14 @@ public class Score {
 
     @Override
     public String toString() {
-        return "Score{" +
+        return "ScoreEagerDTO{" +
                "id=" + id +
                ", set1=" + set1 +
                ", set2=" + set2 +
                ", set3=" + set3 +
                ", set4=" + set4 +
                ", set5=" + set5 +
+               ", matchDTO=" + matchDTO +
                '}';
     }
 }

@@ -18,6 +18,6 @@ public class ScoreController {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Id du score: ");
         long id = scanner.nextLong();
-        Score score = scoreService.getScore(id);
+        scoreService.getScore(id);
     }
 }

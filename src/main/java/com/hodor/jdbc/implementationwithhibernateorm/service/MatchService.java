@@ -1,10 +1,7 @@
 package com.hodor.jdbc.implementationwithhibernateorm.service;
 
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
-import com.hodor.jdbc.implementationwithhibernateorm.dto.EpreuveEagerDTO;
-import com.hodor.jdbc.implementationwithhibernateorm.dto.JoueurDTO;
-import com.hodor.jdbc.implementationwithhibernateorm.dto.MatchDTO;
-import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
+import com.hodor.jdbc.implementationwithhibernateorm.dto.*;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Epreuve;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Match;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.MatchRepositoryImpl;
@@ -65,6 +62,15 @@ public class MatchService {
             epreuve.setAnnee(match.getEpreuve().getAnnee());
             epreuve.setTypeEpreuve(match.getEpreuve().getTypeEpreuve());
             epreuve.setTournoi(tournoi);
+
+            ScoreEagerDTO scoreEagerDTO = new ScoreEagerDTO();
+            scoreEagerDTO.setSet1(match.getScore().getSet1());
+            scoreEagerDTO.setSet2(match.getScore().getSet2());
+            scoreEagerDTO.setSet3(match.getScore().getSet3());
+            scoreEagerDTO.setSet4(match.getScore().getSet4());
+            scoreEagerDTO.setSet5(match.getScore().getSet5());
+            scoreEagerDTO.setId(match.getScore().getId());
+            dto.setScore(scoreEagerDTO);
 
             dto.setEpreuve(epreuve);
             System.out.println("Match récupéré: " + dto);

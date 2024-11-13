@@ -2,12 +2,15 @@ package com.hodor.jdbc.implementationwithhibernateorm.dto;
 
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 
+import java.util.Set;
+
 public class EpreuveEagerDTO {
 
     private Long id;
     private Short annee;
     private TournoiDTO tournoi;
     private Character typeEpreuve;
+    private Set<JoueurDTO> participants;
 
     public Character getTypeEpreuve() {
         return typeEpreuve;
@@ -48,6 +51,15 @@ public class EpreuveEagerDTO {
                ", annee=" + annee +
                ", tournoi=" + tournoi +
                ", typeEpreuve=" + typeEpreuve +
+               ", participants=" + participants +
                '}';
+    }
+
+    public Set<JoueurDTO> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Set<JoueurDTO> participants) {
+        this.participants = participants;
     }
 }

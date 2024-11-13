@@ -73,7 +73,6 @@ public class ScoreRepositoryImpl {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         score = session.get(Score.class, id);
-        System.out.println("Score récupéré: " + score);
 
         return score;
     }

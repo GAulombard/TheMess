@@ -1,9 +1,6 @@
 package com.hodor.jdbc.implementationwithhibernateorm.controller;
 
-import com.hodor.jdbc.implementationwithhibernateorm.entity.Epreuve;
-import com.hodor.jdbc.implementationwithhibernateorm.entity.Tournoi;
 import com.hodor.jdbc.implementationwithhibernateorm.service.EpreuveService;
-import com.hodor.jdbc.implementationwithhibernateorm.service.TournoiService;
 
 import java.util.Scanner;
 
@@ -15,11 +12,11 @@ public class EpreuveController {
         this.epreuveService = new EpreuveService();
     }
 
-    public void afficheDetailEpreuveAvecTournoi() {
+    public void afficheDetailEpreuve() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Id de l'epreuve: ");
         long id = scanner.nextLong();
-        epreuveService.getEpreuveAvecTournoi(id);
+        epreuveService.getEpreuveDetaille(id);
     }
 
     public void afficheDetailEpreuveSansTournoi() {

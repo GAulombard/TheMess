@@ -22,7 +22,7 @@ public class Client {
         //scoreController.afficheDetailScore();
 
         EpreuveController epreuveController = new EpreuveController();
-        //epreuveController.afficheDetailEpreuveAvecTournoi();
+        //epreuveController.afficheDetailEpreuve();
         //epreuveController.afficheDetailEpreuveSansTournoi();
 
         MatchController matchController = new MatchController();

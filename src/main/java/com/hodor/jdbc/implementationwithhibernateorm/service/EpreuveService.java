@@ -3,11 +3,15 @@ package com.hodor.jdbc.implementationwithhibernateorm.service;
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.EpreuveEagerDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.EpreuveLazyDTO;
+import com.hodor.jdbc.implementationwithhibernateorm.dto.JoueurDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Epreuve;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.EpreuveRepositoryImpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.HashSet;
 
 public class EpreuveService {
 
@@ -17,7 +21,7 @@ public class EpreuveService {
         this.epreuveRepository = new EpreuveRepositoryImpl();
     }
 
-    public EpreuveEagerDTO getEpreuveAvecTournoi(Long id) {
+    public EpreuveEagerDTO getEpreuveDetaille(Long id) {
         Session session = null;
         Transaction tx = null;
         Epreuve epreuve = null;
@@ -37,6 +41,16 @@ public class EpreuveService {
             dto.setAnnee(epreuve.getAnnee());
             dto.setTypeEpreuve(epreuve.getTypeEpreuve());
             dto.setId(epreuve.getId());
+            dto.setParticipants(new HashSet<>());
+
+            for (Joueur joueur : epreuve.getParticipants()) {
+                final JoueurDTO joueurDto = new JoueurDTO();
+                joueurDto.setId(joueur.getId());
+                joueurDto.setNom(joueur.getNom());
+                joueurDto.setPrenom(joueur.getPrenom());
+                joueurDto.setSexe(joueur.getSexe());
+                dto.getParticipants().add(joueurDto);
+            }
 
             tx.commit();
         } catch (Exception e) {
