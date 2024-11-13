@@ -27,5 +27,6 @@ public class Client {
 
         MatchController matchController = new MatchController();
         matchController.afficheDetailMatch();
+        matchController.tapidVert();
     }
 }

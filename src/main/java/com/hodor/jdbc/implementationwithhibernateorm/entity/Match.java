@@ -18,7 +18,7 @@ public class Match {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_EPREUVE")
     private Epreuve epreuve;
-    @OneToOne(mappedBy = "match")
+    @OneToOne(mappedBy = "match",fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Score score;
 
     public Score getScore() {
