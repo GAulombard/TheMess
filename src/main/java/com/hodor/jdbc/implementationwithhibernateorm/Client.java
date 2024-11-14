@@ -26,7 +26,8 @@ public class Client {
         //epreuveController.afficheDetailEpreuveSansTournoi();
 
         MatchController matchController = new MatchController();
-        matchController.afficheDetailMatch();
-        matchController.tapidVert();
+        //matchController.afficheDetailMatch();
+        //matchController.tapidVert();
+        matchController.ajouterMatch();
     }
 }

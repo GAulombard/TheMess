@@ -59,7 +59,7 @@ public class MatchService {
 
             matchRepository.create(match);
 
-            System.out.println("Match tapis vert: " + match);
+            System.out.println("Match ajouté: " + match);
             tx.commit();
         } catch (Throwable t) {
             t.printStackTrace();
