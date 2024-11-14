@@ -62,4 +62,11 @@ public class JoueurController {
 
         joueurService.createJoueur(joueur);
     }
+
+    public void afficheListeJoueur() {
+        System.out.println("Liste des joueurs (H) ou (F) : ");
+        Scanner scanner = new Scanner(System.in);
+        char sexe = scanner.nextLine().charAt(0);
+        joueurService.getListJoueur(sexe);
+    }
 }

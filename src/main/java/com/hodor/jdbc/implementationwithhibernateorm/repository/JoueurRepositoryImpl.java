@@ -4,6 +4,7 @@ import com.hodor.jdbc.implementationwithhibernateorm.DataSourceProvider;
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,47 +45,11 @@ public class JoueurRepositoryImpl {
         return joueur;
     }
 
-    public List<Joueur> list() {
-        Connection con = null;
-        List<Joueur> joueurs = new ArrayList<>();
-        try {
-            con = DataSourceProvider.getInstance().getConnection();
-
-            PreparedStatement ps = con.prepareStatement("""
-                         SELECT ID, NOM,PRENOM,SEXE
-                         FROM JOUEUR         
-                    """);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Joueur joueur = new Joueur();
-                joueur.setId(rs.getLong("ID"));
-                joueur.setNom(rs.getString("NOM"));
-                joueur.setPrenom(rs.getString("PRENOM"));
-                joueur.setSexe(rs.getString("SEXE").charAt(0));
-                joueurs.add(joueur);
-            }
-            System.out.println("Joueurs récupérés: " + joueurs.size());
-            ps.close();
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                con.rollback();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        } finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return joueurs;
+    public List<Joueur> list(char sexe) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Query<Joueur> query = session.createQuery("select j from Joueur j where j.sexe=?1", Joueur.class);
+        query.setParameter(1, sexe);
+        return query.getResultList();
     }
+
 }

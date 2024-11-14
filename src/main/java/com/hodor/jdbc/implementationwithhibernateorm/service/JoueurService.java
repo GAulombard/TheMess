@@ -1,10 +1,14 @@
 package com.hodor.jdbc.implementationwithhibernateorm.service;
 
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
+import com.hodor.jdbc.implementationwithhibernateorm.dto.JoueurDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.JoueurRepositoryImpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JoueurService {
 
@@ -53,6 +57,36 @@ public class JoueurService {
         }
 
         return joueur;
+    }
+
+    public List<JoueurDTO> getListJoueur(char sexe) {
+        Session session = null;
+        Transaction tx = null;
+        List<JoueurDTO> joueurDTOs = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            joueurRepository.list(sexe).forEach(j -> {
+                JoueurDTO joueurDTO = new JoueurDTO();
+                joueurDTO.setId(j.getId());
+                joueurDTO.setNom(j.getNom());
+                joueurDTO.setPrenom(j.getPrenom());
+                joueurDTO.setSexe(j.getSexe());
+                System.out.println(joueurDTO);
+                joueurDTOs.add(joueurDTO);
+            });
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return joueurDTOs;
     }
 
     public Joueur renome(Long id, String nom) {
