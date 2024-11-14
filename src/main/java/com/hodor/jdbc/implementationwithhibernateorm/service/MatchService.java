@@ -14,10 +14,10 @@ import org.hibernate.Transaction;
 
 public class MatchService {
 
-    private MatchRepositoryImpl matchRepository;
-    private ScoreRepositoryImpl scoreRepository;
-    private EpreuveRepositoryImpl epreuveRepository;
-    private JoueurRepositoryImpl joueurRepository;
+    private final MatchRepositoryImpl matchRepository;
+    private final ScoreRepositoryImpl scoreRepository;
+    private final EpreuveRepositoryImpl epreuveRepository;
+    private final JoueurRepositoryImpl joueurRepository;
     /*private MatchDAO matchDAO;*/
 
     public MatchService() {
@@ -60,6 +60,27 @@ public class MatchService {
             matchRepository.create(match);
 
             System.out.println("Match ajouté: " + match);
+            tx.commit();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+
+    public void deleteMatch(Long id) {
+        Session session = null;
+        Match match = null;
+        Transaction tx = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            matchRepository.delete(id);
+            System.out.println("Match supprimé: " + id);
             tx.commit();
         } catch (Throwable t) {
             t.printStackTrace();

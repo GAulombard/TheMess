@@ -20,6 +20,7 @@ public class Client {
 
         ScoreController scoreController = new ScoreController();
         //scoreController.afficheDetailScore();
+        scoreController.supprimerScore();
 
         EpreuveController epreuveController = new EpreuveController();
         //epreuveController.afficheDetailEpreuve();
@@ -28,6 +29,7 @@ public class Client {
         MatchController matchController = new MatchController();
         //matchController.afficheDetailMatch();
         //matchController.tapidVert();
-        matchController.ajouterMatch();
+        //matchController.ajouterMatch();
+        //matchController.supprimerMatch();
     }
 }

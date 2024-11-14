@@ -71,6 +71,13 @@ public class MatchController {
         matchService.createMatch(dto);
     }
 
+    public void supprimerMatch() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id du match: ");
+        long id = scanner.nextLong();
+        matchService.deleteMatch(id);
+    }
+
     public void tapisVert() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Id du match pour tapis vert: ");

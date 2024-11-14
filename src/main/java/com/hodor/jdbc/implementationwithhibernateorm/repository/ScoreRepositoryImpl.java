@@ -3,6 +3,7 @@ package com.hodor.jdbc.implementationwithhibernateorm.repository;
 import com.hodor.jdbc.implementationwithhibernateorm.DataSourceProvider;
 import com.hodor.jdbc.implementationwithhibernateorm.HibernateUtil;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Match;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Score;
 import org.hibernate.Session;
 
@@ -75,6 +76,14 @@ public class ScoreRepositoryImpl {
         score = session.get(Score.class, id);
 
         return score;
+    }
+
+    public void delete(Long id) {
+
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Score score = session.get(Score.class, id);
+        session.delete(score);
+        System.out.println("Score supprimé id: " + id);
     }
 
 }

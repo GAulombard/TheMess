@@ -20,4 +20,11 @@ public class ScoreController {
         long id = scanner.nextLong();
         scoreService.getScore(id);
     }
+
+    public void supprimerScore() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Id du score: ");
+        long id = scanner.nextLong();
+        scoreService.deleteScore(id);
+    }
 }

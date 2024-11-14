@@ -6,6 +6,7 @@ import com.hodor.jdbc.implementationwithhibernateorm.dto.MatchDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.ScoreEagerDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.dto.TournoiDTO;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Joueur;
+import com.hodor.jdbc.implementationwithhibernateorm.entity.Match;
 import com.hodor.jdbc.implementationwithhibernateorm.entity.Score;
 import com.hodor.jdbc.implementationwithhibernateorm.repository.ScoreRepositoryImpl;
 import org.hibernate.Session;
@@ -56,7 +57,25 @@ public class ScoreService {
                 session.close();
             }
         }
-
         return dto;
+    }
+
+    public void deleteScore(Long id) {
+        Session session = null;
+        Score score = null;
+        Transaction tx = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            scoreRepository.delete(id);
+            tx.commit();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }
