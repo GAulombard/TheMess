@@ -12,7 +12,7 @@ public class Client {
         //joueurController.renommerJoueur();
         //joueurController.changerSexe();
         //joueurController.supprimerJoueur();
-        //joueurController.afficheListeJoueur();
+        joueurController.afficheListeJoueur();
 
         TournoiController tournoiController = new TournoiController();
         //tournoiController.afficheDetailTournoi();
@@ -26,7 +26,7 @@ public class Client {
         EpreuveController epreuveController = new EpreuveController();
         //epreuveController.afficheDetailEpreuve();
         //epreuveController.afficheDetailEpreuveSansTournoi();
-        epreuveController.afficheListeEpreuve();
+        //epreuveController.afficheListeEpreuve();
 
         MatchController matchController = new MatchController();
         //matchController.afficheDetailMatch();

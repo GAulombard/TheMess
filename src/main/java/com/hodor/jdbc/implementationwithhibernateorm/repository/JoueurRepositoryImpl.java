@@ -47,7 +47,8 @@ public class JoueurRepositoryImpl {
 
     public List<Joueur> list(char sexe) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Query<Joueur> query = session.createQuery("select j from Joueur j where j.sexe=?1", Joueur.class);
+        //Query<Joueur> query = session.createQuery("select j from Joueur j where j.sexe=?1", Joueur.class);
+        Query<Joueur> query = session.createNamedQuery("given_sex", Joueur.class);
         query.setParameter(1, sexe);
         return query.getResultList();
     }

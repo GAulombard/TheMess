@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "JOUEUR")
+@org.hibernate.annotations.NamedQuery(query = "select j from Joueur j where j.sexe=?1",name = "given_sex")
+@org.hibernate.annotations.NamedQuery(query = "select j from Joueur j where j.nom=?1",name = "given_name")
 public class Joueur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

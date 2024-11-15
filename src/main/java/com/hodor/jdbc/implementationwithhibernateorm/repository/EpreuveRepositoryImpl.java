@@ -26,6 +26,7 @@ public class EpreuveRepositoryImpl {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Query<Epreuve> query = session.createQuery("""
                 select e from Epreuve e
+                join fetch e.tournoi
                 where e.tournoi.code = :code
                 """, Epreuve.class);
         query.setParameter("code", code);
