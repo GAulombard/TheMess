@@ -11,7 +11,9 @@ import com.hodor.jdbc.implementationwithhibernateorm.repository.EpreuveRepositor
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class EpreuveService {
 
@@ -90,5 +92,42 @@ public class EpreuveService {
         }
         System.out.println("Epreuve récupéré: " + dto);
         return dto;
+    }
+
+    public List<EpreuveEagerDTO> getListEpreuve(String code) {
+        Session session = null;
+        Transaction tx = null;
+        List<EpreuveEagerDTO> epreuveEagerDTOS = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+
+            epreuveRepository.list(code).forEach(e -> {
+                EpreuveEagerDTO epreuveEagerDTO = new EpreuveEagerDTO();
+                epreuveEagerDTO.setId(e.getId());
+                epreuveEagerDTO.setAnnee(e.getAnnee());
+                epreuveEagerDTO.setTypeEpreuve(e.getTypeEpreuve());
+
+                TournoiDTO tournoiDTO = new TournoiDTO();
+                tournoiDTO.setId(e.getTournoi().getId());
+                tournoiDTO.setCode(e.getTournoi().getCode());
+                tournoiDTO.setNom(e.getTournoi().getNom());
+
+                epreuveEagerDTO.setTournoi(tournoiDTO);
+
+                System.out.println(epreuveEagerDTO);
+                epreuveEagerDTOS.add(epreuveEagerDTO);
+            });
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return epreuveEagerDTOS;
     }
 }
